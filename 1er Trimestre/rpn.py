@@ -1,5 +1,6 @@
 def rpn(str_):
 	p = []
+	for i in str_:
 		if i.isdigit():
 			p.append(i)
 			continue
@@ -22,4 +23,4 @@ def rpn(str_):
 	return p.pop()
 
 
-print(rpn("489+2/"))
+print(rpn("98-"))

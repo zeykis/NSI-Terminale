@@ -22,9 +22,8 @@ w.addch(int(food[0]), int(food[1]), int(curses.ACS_PI))
 key = curses.KEY_RIGHT
 while True:
     next_key = w.getch()
-    key= key if next_key == -1 else next_key
-
-    if snake[0][0] in [0, sh] or snake[0][1]  in [0, sw] or snake[0] in snake[1:]:
+    key = key if next_key == -1 else next_key
+    if snake[0][0] in [0, sh] or snake[0][1] in [0, sw] or snake[0] in snake[1:]:
         curses.endwin()
         quit()
     new_head = [snake[0][0], snake[0][1]]
