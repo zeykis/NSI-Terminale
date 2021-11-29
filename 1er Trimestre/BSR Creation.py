@@ -1,3 +1,4 @@
+import graphviz as digraph
 class ABR:
     def __init__(self,racine=None):
         self.racine=racine
@@ -7,6 +8,48 @@ class Noeud:
         self.gauche=noeud_gauche
         self.droit=noeud_droit
         self.pere=noeud_pere
+    def suppression(self,val):
+        pere = None
+        racine = self
+        while racine and racine.valeur != val:
+            pere = racine
+            if racine.valeur > val:
+                racine = racine.gauche
+            else:
+                racine = racine.droit
+        if racine == None:
+            return racine
+        if racine.gauche == None and racine.droit == None:
+            if racine != self:
+                if pere.gauche == racine:
+                    pere.gauche = None
+                else:
+                    pere.droit = None
+            else:
+                if pere.gauche == racine:
+                    pere.gauche = None
+                else:
+                    pere.droit = None
+                self = None
+        elif racine.gauche and racine.droit:
+            successeur = minimum_recur(racine.droit)
+            elem=successeur.valeur
+            suppression(self,successeur.valeur)
+            racine.valeur=elem
+        else:
+            if racine.gauche:
+                fils = racine.gauche
+            else:
+                fils = racine.droit
+            if racine != self:
+                if racine == pere.gauche:
+                    pere.gauche = fils
+                else:
+                    pere.droit = fils
+            else:
+                self = fils   
+        return self.show
+    
 def infixe(n):
     if n is not None:
         infixe(n.gauche)
@@ -178,3 +221,38 @@ def creer_abr(A):
            
 L=[17,10,5,21,3,56]
 print(creer_abr(L))
+
+
+
+'''
+1 week due
+deletion of a node in bst 
+if key not in bsr : break
+if key to del is in outernode : delete
+if key to del is in innernode: if only one son then replace by its son
+if key to del is in innernode: if several son then replace with highest key for the left tree or with the lowest key for the right tree
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
