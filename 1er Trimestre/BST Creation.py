@@ -48,7 +48,7 @@ class Noeud:
                     pere.droit = fils
             else:
                 self = fils   
-        return self.show
+        return self
     
 def infixe(n):
     if n is not None:
@@ -111,7 +111,9 @@ n2.pere=n1
 n1.pere=n5
 ## Parcours d'arbre
 #infixe(n5)
-#prefixe(n5)
+prefixe(n5)
+n5.suppression(5)
+prefixe(n5)
 #suffixe(n5)
 #####################################################
 
@@ -221,38 +223,3 @@ def creer_abr(A):
            
 L=[17,10,5,21,3,56]
 print(creer_abr(L))
-
-
-
-'''
-1 week due
-deletion of a node in bst 
-if key not in bsr : break
-if key to del is in outernode : delete
-if key to del is in innernode: if only one son then replace by its son
-if key to del is in innernode: if several son then replace with highest key for the left tree or with the lowest key for the right tree
-'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
