@@ -22,11 +22,14 @@ def binomial_dyn(n,m):
 ## Cette fonction appelle la fonction récursive binomial_memoise(n,m,K)
 ## Binomial(n,m) avec une complexité de O(n*m)
 def binomial(n,m):
+    if m==0 or m==n:
+        return 1
     K=[[0]*(m+1) for i in range(n+1)]
     K[0][0]=1
     K[1][0],K[1][1]=1,1
     return binomial_memoise(n,m,K)
 
+## Fonction binomial_memoise(n,m,K) qui calcule le binomial(n,m) si m = 0 ou m = n sortie --> 0
 def binomial_memoise(n,m,K):
     if K[n][m]!=0:
         return K[n][m]
@@ -37,6 +40,13 @@ def binomial_memoise(n,m,K):
             K[n][m]=binomial_memoise(n-1,m-1,K)+binomial_memoise(n-1,m,K)
         return K[n][m]
 
-print(binomial_rec(5,3))
-print(binomial_dyn(5,3))
-print(binomial(5,3))
+## Test des fonctions binomiales
+def main():
+    n=int(input("n = "))
+    m=int(input("m = "))
+    print("binomial(n,m) = ",binomial(n,m))
+    print("binomial_rec(n,m) = ",binomial_rec(n,m))
+    print("binomial_dyn(n,m) = ",binomial_dyn(n,m))
+
+if __name__ == '__main__':
+    main()
